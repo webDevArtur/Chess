@@ -187,10 +187,12 @@
     flex-direction: row;
   }
 
-  .lost {
-    padding: 30px;
+  .lost-white {
     margin-right: 0;
-    background-color: lightgray;
+  }
+
+  .lost-black {
+    margin-right: 0;
   }
 
 }
@@ -253,8 +255,11 @@
     flex-direction: row;
   }
 
-  .lost {
-    padding: 30px;
+  .lost-white {
+    margin-right: 0;
+  }
+
+  .lost-black {
     margin-right: 0;
   }
 }
