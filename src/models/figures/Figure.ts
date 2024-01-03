@@ -31,10 +31,6 @@ export class Figure {
         this.id = Math.random(); // Генерация уникального идентификатора фигуры
     }
 
-    isKingUnderAttack(): boolean {
-        return false
-    }
-
     // Метод, определяющий возможность хода фигуры в заданную ячейку (заглушка, нужно реализовать для каждой фигуры)
     canMove(target: Cell): boolean {
         if(target.figure?.color === this.color){
@@ -48,8 +44,9 @@ export class Figure {
 
 
 
-    // Метод для перемещения фигуры в заданную ячейку (заглушка, нужно реализовать для каждой фигуры)
-    moveFigure() {
+    // Обновленный метод для перемещения фигуры в заданную ячейку
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    moveFigure(_target: Cell){
 
     }
 }

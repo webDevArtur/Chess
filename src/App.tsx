@@ -8,19 +8,14 @@ import LostFigures from './components/LostFigures';
 import Timer from './components/Timer';
 
 function App() {
-    // Состояние, хранящее текущее состояние доски
     const [board, setBoard] = useState(new Board());
-    const [whitePlayer, setWhitePlayer] = useState(new Player(Colors.WHITE));
-    const [blackPlayer, setBlackPlayer] = useState(new Player(Colors.BLACK));
     const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
 
-    // Эффект, вызывающий функцию restart при монтировании компонента
     useEffect(() => {
         restart();
-        setCurrentPlayer(whitePlayer);
+        setCurrentPlayer(new Player(Colors.WHITE));
     }, []);
 
-    // Функция restart, инициализирующая новую доску и устанавливающая ее в состояние
     const restart = () => {
         const newBoard = new Board();
         newBoard.initCells();
@@ -28,28 +23,23 @@ function App() {
         setBoard(newBoard);
     };
 
-    // Функция для смены текущего игрока
     function swapPlayer() {
-        setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? blackPlayer : whitePlayer);
+        setCurrentPlayer(currentPlayer?.color === Colors.WHITE ? new Player(Colors.BLACK) : new Player(Colors.WHITE));
     }
 
-    // Отображение компонента App
     return (
         <div className='app'>
             <div className='lost-container'>
-                {/* Вставка компонента Timer с передачей функции restart и текущего игрока */}
                 <Timer
                     restart={restart}
                     currentPlayer={currentPlayer}
                 />
                 <div className='mobile-lost-container'>
-                    {/* Вставка компонента LostFigures для черных фигур */}
                     <LostFigures
                         title='Черные фигуры'
                         figures={board.lostBlackFigures}
                         isBlack={true}
                     />
-                    {/* Вставка компонента LostFigures для белых фигур */}
                     <LostFigures
                         title='Белые фигуры'
                         figures={board.lostWhiteFigures}
@@ -57,8 +47,6 @@ function App() {
                     />
                 </div>
             </div>
-
-            {/* Вставка компонента BoardComponent с передачей состояния доски и функции установки состояния */}
             <BoardComponent
                 board={board}
                 setBoard={setBoard}
